@@ -1,0 +1,49 @@
+{
+  "policies": [
+    {
+      "handler": {
+        "export": "ClearHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "exclude": [
+            "api-token"
+          ]
+        }
+      },
+      "name": "clear-headers-inbound",
+      "policyType": "clear-headers-inbound"
+    },
+    {
+      "handler": {
+        "export": "default",
+        "module": "$import(./modules/custom-cache)"
+      },
+      "name": "custom-code-inbound",
+      "policyType": "custom-code-inbound"
+    },
+    {
+      "handler": {
+        "export": "OpenIdJwtInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "secret": "test"
+        }
+      },
+      "name": "open-id-jwt-auth-inbound",
+      "policyType": "open-id-jwt-auth-inbound"
+    },
+    {
+      "handler": {
+        "export": "RemoveHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "headers": [
+            "Authorization"
+          ]
+        }
+      },
+      "name": "remove-headers-inbound",
+      "policyType": "remove-headers-inbound"
+    }
+  ]
+}

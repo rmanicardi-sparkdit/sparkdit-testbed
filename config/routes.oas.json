@@ -1,0 +1,906 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Swagger API",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "https://dev.api.sparkdit.com:8080"
+    }
+  ],
+  "paths": {
+    "/criteria": {
+      "get": {
+        "tags": [
+          "Criteria"
+        ],
+        "summary": "Read Criteria",
+        "operationId": "read_criteria_criteria_get",
+        "parameters": [
+          {
+            "name": "app_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "App Id",
+              "type": "integer"
+            }
+          },
+          {
+            "name": "api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "title": "ApiToken",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://dev.api.sparkdit.com"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "open-id-jwt-auth-inbound",
+              "custom-code-inbound",
+              "remove-headers-inbound"
+            ]
+          }
+        }
+      }
+    },
+    "/multirerankbyname": {
+      "post": {
+        "tags": [
+          "Multirerank"
+        ],
+        "summary": "MultirerankByName",
+        "operationId": "post_multirerankname_multirerankname_post",
+        "parameters": [
+          {
+            "name": "api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "title": "ApiToken",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "examples": {
+                "normal": {
+                  "summary": "A normal example",
+                  "description": "A **normal** item works correctly.",
+                  "value": {
+                    "app": 302,
+                    "rerank": [
+                      "Mini Cooper S",
+                      "Nissan 350Z",
+                      "Mustang SVT"
+                    ],
+                    "criteria": [
+                      {
+                        "id": "productlink",
+                        "name": "productlink",
+                        "importance": 50
+                      },
+                      {
+                        "id": "actionlink",
+                        "name": "actionlink",
+                        "importance": 50
+                      },
+                      {
+                        "id": "remoteimage",
+                        "name": "remoteimage",
+                        "importance": 50
+                      },
+                      {
+                        "id": "f1",
+                        "name": "price",
+                        "importance": 50,
+                        "value": 220
+                      },
+                      {
+                        "id": "f2",
+                        "name": "size",
+                        "importance": 26,
+                        "value": 21
+                      },
+                      {
+                        "id": "f3",
+                        "name": "color",
+                        "importance": 82,
+                        "value": [
+                          {
+                            "name": "red",
+                            "value": 84
+                          },
+                          {
+                            "name": "green",
+                            "value": 50
+                          },
+                          {
+                            "name": "yellow",
+                            "value": 50
+                          },
+                          {
+                            "name": "blue",
+                            "value": 50
+                          },
+                          {
+                            "name": "black",
+                            "value": 50
+                          },
+                          {
+                            "name": "white",
+                            "value": 50
+                          }
+                        ]
+                      }
+                    ],
+                    "dataset": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://dev.api.sparkdit.com"
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/multirerank": {
+      "post": {
+        "tags": [
+          "Multirerank"
+        ],
+        "summary": "Multirerank",
+        "operationId": "post_multirerank_multirerank_post",
+        "parameters": [
+          {
+            "name": "api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "title": "ApiToken",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "examples": {
+                "normal": {
+                  "summary": "A normal example",
+                  "description": "A **normal** item works correctly.",
+                  "value": {
+                    "app": 252,
+                    "rerank": [
+                      153287,
+                      153288,
+                      153289,
+                      153292,
+                      153294,
+                      153290,
+                      153291,
+                      153293
+                    ],
+                    "criteria": [
+                      {
+                        "id": "productlink",
+                        "name": "productlink",
+                        "importance": 50
+                      },
+                      {
+                        "id": "actionlink",
+                        "name": "actionlink",
+                        "importance": 50
+                      },
+                      {
+                        "id": "remoteimage",
+                        "name": "remoteimage",
+                        "importance": 50
+                      },
+                      {
+                        "id": "f1",
+                        "name": "price",
+                        "importance": 50,
+                        "value": 220
+                      },
+                      {
+                        "id": "f2",
+                        "name": "size",
+                        "importance": 26,
+                        "value": 21
+                      },
+                      {
+                        "id": "f3",
+                        "name": "color",
+                        "importance": 82,
+                        "value": [
+                          {
+                            "name": "red",
+                            "value": 84
+                          },
+                          {
+                            "name": "green",
+                            "value": 50
+                          },
+                          {
+                            "name": "yellow",
+                            "value": 50
+                          },
+                          {
+                            "name": "blue",
+                            "value": 50
+                          },
+                          {
+                            "name": "black",
+                            "value": 50
+                          },
+                          {
+                            "name": "white",
+                            "value": 50
+                          }
+                        ]
+                      }
+                    ],
+                    "dataset": ""
+                  }
+                },
+                "recalk": {
+                  "summary": "example with recalc",
+                  "description": "A **normal** item works correctly.",
+                  "value": {
+                    "app": 275,
+                    "rerank": [
+                      153652,
+                      153650,
+                      153649,
+                      153648,
+                      153654,
+                      153647,
+                      153651,
+                      153653
+                    ],
+                    "recalc": "true",
+                    "dataset": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://dev.api.sparkdit.com"
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/rank": {
+      "post": {
+        "tags": [
+          "Rank"
+        ],
+        "summary": "Rank",
+        "operationId": "post_rank_rank_post",
+        "parameters": [
+          {
+            "name": "api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "title": "ApiToken",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "examples": {
+                "normal": {
+                  "summary": "A normal example",
+                  "description": "A **normal** item works correctly.",
+                  "value": {
+                    "app": 70,
+                    "criteria": [
+                      {
+                        "id": "f1",
+                        "name": "Contrast Ratio",
+                        "importance": 50,
+                        "value": 4974
+                      },
+                      {
+                        "id": "f2",
+                        "name": "Base Price",
+                        "importance": 50,
+                        "value": 56.32
+                      },
+                      {
+                        "id": "f3",
+                        "name": "Weight",
+                        "importance": 50,
+                        "value": 0.13125
+                      },
+                      {
+                        "id": "f4",
+                        "name": "Display Type",
+                        "importance": 50,
+                        "value": [
+                          {
+                            "name": "TFT LCD",
+                            "value": 50
+                          },
+                          {
+                            "name": "Other",
+                            "value": 50
+                          },
+                          {
+                            "name": "CRT",
+                            "value": 50
+                          }
+                        ]
+                      },
+                      {
+                        "id": "f5",
+                        "name": "Power Efficiency",
+                        "importance": 50,
+                        "value": 218
+                      },
+                      {
+                        "id": "f6",
+                        "name": "Screen Size",
+                        "importance": 50,
+                        "value": 50
+                      }
+                    ],
+                    "dataset": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://dev.api.sparkdit.com"
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/rerankbyname": {
+      "post": {
+        "tags": [
+          "Rank"
+        ],
+        "summary": "RerankByName",
+        "operationId": "post_rerankname_rerankname_post",
+        "parameters": [
+          {
+            "name": "api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "title": "ApiToken",
+              "type": "string"
+            }
+          },
+          {
+            "name": "rerank",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "Rerank",
+              "type": "string",
+              "default": "Samsung S3 Slim"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "examples": {
+                "normal": {
+                  "summary": "A normal example",
+                  "description": "A **normal** item works correctly.",
+                  "value": {
+                    "app": 71,
+                    "criteria": [
+                      {
+                        "id": "f1",
+                        "name": "Base Price",
+                        "importance": 50,
+                        "value": 6.75
+                      },
+                      {
+                        "id": "f2",
+                        "name": "Capacity",
+                        "importance": 50,
+                        "value": 0.5
+                      },
+                      {
+                        "id": "f3",
+                        "name": "Weight",
+                        "importance": 50,
+                        "value": 0.5
+                      },
+                      {
+                        "id": "f4",
+                        "name": "Width",
+                        "importance": 50,
+                        "value": 0.75
+                      },
+                      {
+                        "id": "f5",
+                        "name": "Summary",
+                        "importance": 50
+                      },
+                      {
+                        "id": "f6",
+                        "name": "Video Support",
+                        "importance": 50,
+                        "value": [
+                          {
+                            "name": "True",
+                            "value": 1
+                          },
+                          {
+                            "name": "False",
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "id": "f7",
+                        "name": "Screen Size",
+                        "importance": 50,
+                        "value": 6.59
+                      },
+                      {
+                        "id": "f8",
+                        "name": "Manufacturer",
+                        "importance": 50,
+                        "value": [
+                          {
+                            "name": "Other",
+                            "value": 50
+                          },
+                          {
+                            "name": "Sony",
+                            "value": 50
+                          },
+                          {
+                            "name": "Apple",
+                            "value": 50
+                          },
+                          {
+                            "name": "Microsoft",
+                            "value": 50
+                          },
+                          {
+                            "name": "Samsung",
+                            "value": 50
+                          },
+                          {
+                            "name": "Creative",
+                            "value": 50
+                          },
+                          {
+                            "name": "Philips",
+                            "value": 50
+                          },
+                          {
+                            "name": "Coby",
+                            "value": 50
+                          }
+                        ]
+                      },
+                      {
+                        "id": "f9",
+                        "name": "Link",
+                        "importance": 49
+                      },
+                      {
+                        "id": "f10",
+                        "name": "Keywords",
+                        "importance": 50
+                      }
+                    ],
+                    "dataset": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://dev.api.sparkdit.com"
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    },
+    "/rerank": {
+      "post": {
+        "tags": [
+          "Rank"
+        ],
+        "summary": "Rerank",
+        "operationId": "post_rerank_rerank_post",
+        "parameters": [
+          {
+            "name": "api-token",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "title": "ApiToken",
+              "type": "string"
+            }
+          },
+          {
+            "name": "rerank",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "Rerank-id",
+              "type": "integer",
+              "default": 94
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "examples": {
+                "normal": {
+                  "summary": "A normal example",
+                  "description": "A **normal** item works correctly.",
+                  "value": {
+                    "app": 71,
+                    "criteria": [
+                      {
+                        "id": "f1",
+                        "name": "Base Price",
+                        "importance": 50,
+                        "value": 6.75
+                      },
+                      {
+                        "id": "f2",
+                        "name": "Capacity",
+                        "importance": 50,
+                        "value": 0.5
+                      },
+                      {
+                        "id": "f3",
+                        "name": "Weight",
+                        "importance": 50,
+                        "value": 0.5
+                      },
+                      {
+                        "id": "f4",
+                        "name": "Width",
+                        "importance": 50,
+                        "value": 0.75
+                      },
+                      {
+                        "id": "f5",
+                        "name": "Summary",
+                        "importance": 50
+                      },
+                      {
+                        "id": "f6",
+                        "name": "Video Support",
+                        "importance": 50,
+                        "value": [
+                          {
+                            "name": "True",
+                            "value": 1
+                          },
+                          {
+                            "name": "False",
+                            "value": 0
+                          }
+                        ]
+                      },
+                      {
+                        "id": "f7",
+                        "name": "Screen Size",
+                        "importance": 50,
+                        "value": 6.59
+                      },
+                      {
+                        "id": "f8",
+                        "name": "Manufacturer",
+                        "importance": 50,
+                        "value": [
+                          {
+                            "name": "Other",
+                            "value": 50
+                          },
+                          {
+                            "name": "Sony",
+                            "value": 50
+                          },
+                          {
+                            "name": "Apple",
+                            "value": 50
+                          },
+                          {
+                            "name": "Microsoft",
+                            "value": 50
+                          },
+                          {
+                            "name": "Samsung",
+                            "value": 50
+                          },
+                          {
+                            "name": "Creative",
+                            "value": 50
+                          },
+                          {
+                            "name": "Philips",
+                            "value": 50
+                          },
+                          {
+                            "name": "Coby",
+                            "value": 50
+                          }
+                        ]
+                      },
+                      {
+                        "id": "f9",
+                        "name": "Link",
+                        "importance": 49
+                      },
+                      {
+                        "id": "f10",
+                        "name": "Keywords",
+                        "importance": 50
+                      }
+                    ],
+                    "dataset": ""
+                  }
+                },
+                "recalc": {
+                  "summary": "A recalc example",
+                  "description": "A **recalc** item works correctly.",
+                  "value": {
+                    "app": 71,
+                    "dataset": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://dev.api.sparkdit.com"
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        }
+      }
+    }
+  }
+}
